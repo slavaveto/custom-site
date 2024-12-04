@@ -1,21 +1,29 @@
 import { pageData } from "../mockData/pages";
 import Link from "next/link";
 
-export const PageNav = () => {
+type Page = {
+  id: string;
+  object: string;
+  language: string;
+  name: string;
+  pageContent: string[];
+};
+
+export const PageNav = ({ pages }: { pages: Page[] }) => {
   let pageHref = "";
 
   return (
     <div className="flex flex-col">
-      {pageData.map((page) => {
-        if (page.id === 1) {
+      {pages.map((page: Page) => {
+        if (page.object === "page-1") {
           pageHref = `/`;
         } else {
-          pageHref = `/page-${page.id}`;
+          pageHref = `/${page.object}`;
         }
 
         return (
           <Link key={page.id} href={pageHref}>
-            {page.title}
+            {page.name}
           </Link>
         );
       })}

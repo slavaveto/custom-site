@@ -17,7 +17,7 @@ async function main() {
   //Seed Pages
   const page1 = await prisma.page.create({
     data: {
-      object: "Page 1",
+      object: "page-1",
       language: "en",
       name: "Page 1",
       pageContent: ["Tab 1 Content"],
@@ -26,7 +26,7 @@ async function main() {
 
   const page2 = await prisma.page.create({
     data: {
-      object: "Page 2",
+      object: "page-2",
       language: "en",
       name: "Page 2",
       pageContent: ["Tab 2 Content1", "Tab 2 Content2", "Tab 2 Content3"],
@@ -35,7 +35,7 @@ async function main() {
 
   const page3 = await prisma.page.create({
     data: {
-      object: "Page 3",
+      object: "page-3",
       language: "en",
       name: "Page 3",
       pageContent: ["Tab 3 Content"],

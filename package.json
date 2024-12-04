@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "node prisma/seed.js"
+    "create-documents": "node prisma/create-documents.js",
+    "clear-documents": "node prisma/clear-documents.js"
   },
   "dependencies": {
     "@prisma/client": "^6.0.1",

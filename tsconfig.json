@@ -27,7 +27,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "prisma/seed.js"
+    "prisma/create-documents.js"
   ],
   "exclude": ["node_modules"]
 }

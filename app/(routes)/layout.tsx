@@ -12,9 +12,10 @@ import { fetchPages } from "../services/api-client/api-client";
 
 type Page = {
   id: string;
-  name: string;
+  object: string;
   language: string;
-  content: string[];
+  name: string;
+  pageContent: string[];
 };
 
 export default function DashBoardLayout({
@@ -54,7 +55,7 @@ export default function DashBoardLayout({
         <div className="flex mx-auto w-full max-w-[800px]  mb-2">
           {/* LEFT */}
           <div className="w-1/4">
-            <PageNav />
+            <PageNav pages={pages} />
           </div>
 
           {/* RIGHT */}
