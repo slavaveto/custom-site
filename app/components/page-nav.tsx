@@ -1,20 +1,18 @@
-import { pageData } from "../mockData/pages";
+"use client";
+import { useState, useContext } from "react";
 import Link from "next/link";
+import { AppContext } from "@/context/app-context-provider";
 
-type Page = {
-  id: string;
-  object: string;
-  language: string;
-  name: string;
-  pageContent: string[];
-};
+import { Page } from "@prisma/client";
 
-export const PageNav = ({ pages }: { pages: Page[] }) => {
+export const PageNav = () => {
+  const { pagesData } = useContext(AppContext);
+  const [selectedPage, setSelectedPage] = useState<string>("");
   let pageHref = "";
 
   return (
     <div className="flex flex-col">
-      {pages.map((page: Page) => {
+      {pagesData?.map((page: Page) => {
         if (page.object === "page-1") {
           pageHref = `/`;
         } else {
@@ -22,7 +20,12 @@ export const PageNav = ({ pages }: { pages: Page[] }) => {
         }
 
         return (
-          <Link key={page.id} href={pageHref}>
+          <Link
+            key={page.id}
+            href={pageHref}
+            onClick={() => setSelectedPage(page.object)}
+            className={selectedPage === page.object ? "font-bold" : ""}
+          >
             {page.name}
           </Link>
         );

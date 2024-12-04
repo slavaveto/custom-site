@@ -21,6 +21,7 @@ async function main() {
       language: "en",
       name: "Page 1",
       pageContent: ["Tab 1 Content"],
+      pageTabs: [],
     },
   });
 
@@ -30,6 +31,11 @@ async function main() {
       language: "en",
       name: "Page 2",
       pageContent: ["Tab 2 Content1", "Tab 2 Content2", "Tab 2 Content3"],
+      pageTabs: [
+        { name: "Tab 1", content: "Tab 1 Content" },
+        { name: "Tab 2", content: "Tab 2 Content" },
+        { name: "Tab 3", content: "Tab 3 Content" },
+      ],
     },
   });
 
@@ -39,6 +45,7 @@ async function main() {
       language: "en",
       name: "Page 3",
       pageContent: ["Tab 3 Content"],
+      pageTabs: [],
     },
   });
 
