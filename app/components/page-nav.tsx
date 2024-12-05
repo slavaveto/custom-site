@@ -1,13 +1,17 @@
 "use client";
 import { useState, useContext } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { AppContext } from "@/context/app-context-provider";
 
 import { Page } from "@prisma/client";
 
 export const PageNav = () => {
+  const pathname = usePathname();
   const { pagesData } = useContext(AppContext);
-  const [selectedPage, setSelectedPage] = useState<string>("");
+  const [selectedPage, setSelectedPage] = useState<string>(
+    pathname.split("/")[1] || "page-1"
+  );
   let pageHref = "";
 
   return (
