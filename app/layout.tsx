@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 import { AppContextProvider } from "@/context/app-context-provider";
+import { ToasterProvider } from "@/app/components/providers/toaster-provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,6 +32,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AppContextProvider>{children}</AppContextProvider>
+        <ToasterProvider />
       </body>
     </html>
   );

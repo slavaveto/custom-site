@@ -3,7 +3,6 @@
 import { Header } from "../components/header";
 import { Footer } from "../components/footer";
 import { PageNav } from "../components/page-nav";
-import { TabNav } from "../components/tab-nav";
 
 export default function DashBoardLayout({
   children,

@@ -22,3 +22,5 @@ export const fetchPages = async () => {
     toast.error("Pages could not be loaded");
   }
 };
+
+//MESSAGES
