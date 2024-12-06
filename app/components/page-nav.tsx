@@ -6,7 +6,13 @@ import { AppContext } from "@/context/app-context-provider";
 
 import { Page } from "@prisma/client";
 
-export const PageNav = () => {
+export const PageNav = ({
+  mobile,
+  setMobileNavOpen,
+}: {
+  mobile?: boolean;
+  setMobileNavOpen?: (value: boolean) => void;
+}) => {
   const pathname = usePathname();
   const { pagesData } = useContext(AppContext);
   const [selectedPage, setSelectedPage] = useState<string>(
@@ -15,7 +21,11 @@ export const PageNav = () => {
   let pageHref = "";
 
   return (
-    <div className="flex flex-col">
+    <div
+      className={`flex flex-col ${
+        mobile && "gap-8 items-center justify-center w-full text-lg"
+      }`}
+    >
       {pagesData?.map((page: Page) => {
         if (page.object === "page-1") {
           pageHref = `/`;
@@ -27,7 +37,12 @@ export const PageNav = () => {
           <Link
             key={page.id}
             href={pageHref}
-            onClick={() => setSelectedPage(page.object)}
+            onClick={() => {
+              setSelectedPage(page.object);
+              if (mobile) {
+                setMobileNavOpen?.(false);
+              }
+            }}
             className={selectedPage === page.object ? "font-bold" : ""}
           >
             {page.name}
