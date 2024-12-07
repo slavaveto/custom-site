@@ -3,7 +3,21 @@
 import { createContext, useState, useEffect } from "react";
 import { fetchPages } from "@/app/services/api-client/api-client";
 
-import { Page } from "@prisma/client";
+type PageTab = {
+  name: string;
+  content: string;
+};
+
+type Page = {
+  id: string;
+  object: string;
+  language: string;
+  name: string;
+  pageContent: string[];
+  pageTabs: PageTab[]; // Assuming pageTabs contains an array of PageTab objects
+  createdAt: Date;
+  updatedAt: Date;
+};
 
 type AppContextType = {
   pagesData: Page[] | null;

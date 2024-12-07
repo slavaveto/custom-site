@@ -4,8 +4,9 @@ import { useContext, useState, useEffect } from "react";
 import { AppContext } from "@/context/app-context-provider";
 import { TabNav } from "../../components/tab-nav";
 
+
 export default function Page2() {
-  const { pagesData } = useContext(AppContext);
+  const { pagesData } = useContext(AppContext) 
   const page2Data = pagesData?.find((page) => page.object === "page-2");
   const [selectedTab, setSelectedTab] = useState<string>(
     page2Data?.pageTabs?.[0]?.name || ""
