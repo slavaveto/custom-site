@@ -69,7 +69,7 @@ export const MessageForm = () => {
 
       {!messageSent && (
         <>
-          <div className="mt-4 bg-gray-200 pt-4 pb-6 px-2 border-l-2 border-gray-400 text-sm text-gray-700">
+          <div className="mt-4 bg-gray-200 pt-4 pb-6 px-2 border-l-2 border-gray-400 text-sm text-gray-700 dark:bg-gray-600 dark:text-white">
             To send me a message, please fill in all the form fields and click
             the "Send" button.
           </div>
@@ -86,7 +86,7 @@ export const MessageForm = () => {
               onChange={handleChange}
               required
               placeholder="Name*"
-              className="w-full p-2 border border-gray-300 rounded placeholder-gray-400 placeholder:text-sm"
+              className="w-full p-2 border border-gray-300 rounded placeholder-gray-400 placeholder:text-sm dark:bg-gray-600 dark:placeholder-black"
             />
 
             <input
@@ -96,7 +96,7 @@ export const MessageForm = () => {
               onChange={handleChange}
               required
               placeholder="Email*"
-              className="w-full p-2 border border-gray-300 rounded placeholder-gray-400 placeholder:text-sm"
+              className="w-full p-2 border border-gray-300 rounded placeholder-gray-400 placeholder:text-sm dark:bg-gray-600 dark:placeholder-black"
             />
 
             <input
@@ -106,7 +106,7 @@ export const MessageForm = () => {
               onChange={handleChange}
               required
               placeholder="Telegram*"
-              className="w-full p-2 border border-gray-300 rounded placeholder-gray-400 placeholder:text-sm"
+              className="w-full p-2 border border-gray-300 rounded placeholder-gray-400 placeholder:text-sm dark:bg-gray-600 dark:placeholder-black"
             />
 
             <textarea
@@ -116,7 +116,7 @@ export const MessageForm = () => {
               required
               placeholder="Message*"
               rows={4}
-              className="w-full p-2 border border-gray-300 rounded placeholder-gray-400 placeholder:text-sm"
+              className="w-full p-2 border border-gray-300 rounded placeholder-gray-400 placeholder:text-sm dark:bg-gray-600 dark:placeholder-black"
             ></textarea>
 
             <div className="flex justify-end">
