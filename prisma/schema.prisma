@@ -34,7 +34,7 @@ model Site {
 
 model Page {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
-  object   String @unique
+  object   String
   language String
   name     String @unique
   pageContent String[]

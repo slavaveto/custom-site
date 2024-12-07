@@ -2,9 +2,13 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 //SITES
-export const fetchSiteInformation = async () => {
+export const fetchSiteInformation = async (userLanguage: string) => {
   try {
-    const { data } = await axios.get("/api/sites");
+    const { data } = await axios.get("/api/sites", {
+      params: {
+        lang: userLanguage,
+      },
+    });
     return data;
   } catch (error) {
     console.log(error);
@@ -13,9 +17,13 @@ export const fetchSiteInformation = async () => {
 };
 
 //PAGES
-export const fetchPages = async () => {
+export const fetchPages = async (userLanguage: String) => {
   try {
-    const { data } = await axios.get("/api/pages");
+    const { data } = await axios.get("/api/pages", {
+      params: {
+        lang: userLanguage,
+      },
+    });
     return data;
   } catch (error) {
     console.log(error);

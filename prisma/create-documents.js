@@ -5,6 +5,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
+  // ---------------------------ENG-------------------
   // Seed Sites
   const site1 = await prisma.site.create({
     data: {
@@ -45,6 +46,98 @@ async function main() {
       language: "en",
       name: "Page 3",
       pageContent: ["Tab 3 Content"],
+      pageTabs: [],
+    },
+  });
+
+  //--------------------------DE-------------------
+  const site1_de = await prisma.site.create({
+    data: {
+      language: "de",
+      title: "Website Titel",
+      subtitle: "Website Untertitel",
+    },
+  });
+
+  // Seed Pages
+  const page1_de = await prisma.page.create({
+    data: {
+      object: "page-1",
+      language: "de",
+      name: "Seite 1",
+      pageContent: ["Tab 1 Inhalt"],
+      pageTabs: [],
+    },
+  });
+
+  const page2_de = await prisma.page.create({
+    data: {
+      object: "page-2",
+      language: "de",
+      name: "Seite 2",
+      pageContent: ["Tab 2 Inhalt1", "Tab 2 Inhalt2", "Tab 2 Inhalt3"],
+      pageTabs: [
+        { name: "Tab 1", content: "Tab 1 Inhalt" },
+        { name: "Tab 2", content: "Tab 2 Inhalt" },
+        { name: "Tab 3", content: "Tab 3 Inhalt" },
+      ],
+    },
+  });
+
+  const page3_de = await prisma.page.create({
+    data: {
+      object: "page-3",
+      language: "de",
+      name: "Seite 3",
+      pageContent: ["Tab 3 Inhalt"],
+      pageTabs: [],
+    },
+  });
+
+  // ---------------------------SL-------------------
+  const site1_sl = await prisma.site.create({
+    data: {
+      language: "sl",
+      title: "Naslov spletne strani",
+      subtitle: "Podnaslov spletne strani",
+    },
+  });
+
+  // Seed Pages
+  const page1_sl = await prisma.page.create({
+    data: {
+      object: "page-1",
+      language: "sl",
+      name: "Stran 1",
+      pageContent: ["Vsebina zavihka 1"],
+      pageTabs: [],
+    },
+  });
+
+  const page2_sl = await prisma.page.create({
+    data: {
+      object: "page-2",
+      language: "sl",
+      name: "Stran 2",
+      pageContent: [
+        "Vsebina zavihka 2.1",
+        "Vsebina zavihka 2.2",
+        "Vsebina zavihka 2.3",
+      ],
+      pageTabs: [
+        { name: "Zavihek 1", content: "Vsebina zavihka 1" },
+        { name: "Zavihek 2", content: "Vsebina zavihka 2" },
+        { name: "Zavihek 3", content: "Vsebina zavihka 3" },
+      ],
+    },
+  });
+
+  const page3_sl = await prisma.page.create({
+    data: {
+      object: "page-3",
+      language: "sl",
+      name: "Stran 3",
+      pageContent: ["Vsebina zavihka 3"],
       pageTabs: [],
     },
   });

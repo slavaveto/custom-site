@@ -15,8 +15,6 @@ export const MessageForm = () => {
     message: "",
   });
 
-  console.log(process.env.NEXT_PUBLIC_EMAILJS_YOUR_SERVICE_ID);
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
