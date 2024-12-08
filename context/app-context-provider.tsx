@@ -11,6 +11,7 @@ import { Site } from "@prisma/client";
 import { fetchSiteInformation } from "@/app/services/api-client/api-client";
 
 type PageTab = {
+  object: string;
   name: string;
   content: string;
 };

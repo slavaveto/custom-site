@@ -1,4 +1,4 @@
-// to run: npx ts-node prisma/seed.ts
+// to run: npm run create-documents
 
 import { PrismaClient } from "@prisma/client";
 
@@ -33,9 +33,9 @@ async function main() {
       name: "Page 2",
       pageContent: ["Tab 2 Content1", "Tab 2 Content2", "Tab 2 Content3"],
       pageTabs: [
-        { name: "Tab 1", content: "Tab 1 Content" },
-        { name: "Tab 2", content: "Tab 2 Content" },
-        { name: "Tab 3", content: "Tab 3 Content" },
+        { object: "tab-1", name: "Tab 1", content: "Tab 1 Content" },
+        { object: "tab-2", name: "Tab 2", content: "Tab 2 Content" },
+        { object: "tab-3", name: "Tab 3", content: "Tab 3 Content" },
       ],
     },
   });
@@ -77,9 +77,9 @@ async function main() {
       name: "Seite 2",
       pageContent: ["Tab 2 Inhalt1", "Tab 2 Inhalt2", "Tab 2 Inhalt3"],
       pageTabs: [
-        { name: "Tab 1", content: "Tab 1 Inhalt" },
-        { name: "Tab 2", content: "Tab 2 Inhalt" },
-        { name: "Tab 3", content: "Tab 3 Inhalt" },
+        { object: "tab-1", name: "Tab 1", content: "Tab 1 Inhalt" },
+        { object: "tab-2", name: "Tab 2", content: "Tab 2 Inhalt" },
+        { object: "tab-3", name: "Tab 3", content: "Tab 3 Inhalt" },
       ],
     },
   });
@@ -125,9 +125,9 @@ async function main() {
         "Vsebina zavihka 2.3",
       ],
       pageTabs: [
-        { name: "Zavihek 1", content: "Vsebina zavihka 1" },
-        { name: "Zavihek 2", content: "Vsebina zavihka 2" },
-        { name: "Zavihek 3", content: "Vsebina zavihka 3" },
+        { object: "tab-1", name: "Zavihek 1", content: "Vsebina zavihka 1" },
+        { object: "tab-2", name: "Zavihek 2", content: "Vsebina zavihka 2" },
+        { object: "tab-3", name: "Zavihek 3", content: "Vsebina zavihka 3" },
       ],
     },
   });

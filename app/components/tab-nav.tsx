@@ -10,7 +10,6 @@ export const TabNav = ({
 }) => {
   const { pagesData } = useContext(AppContext);
   const page2Data = pagesData?.find((page) => page.object === "page-2");
-  console.log(page2Data?.pageTabs);
 
   return (
     <div className="w-full">
@@ -18,10 +17,12 @@ export const TabNav = ({
         {page2Data?.pageTabs?.map((tab: any, index) => (
           <li
             className={`flex-1 text-center border-b-2 cursor-pointer text-sm text-gray-500 ${
-              selectedTab === tab?.name ? "border-blue-500" : "border-gray-300"
+              selectedTab === tab?.object
+                ? "border-blue-500"
+                : "border-gray-300"
             } `}
             key={tab?.name}
-            onClick={() => setSelectedTab(tab?.name)}
+            onClick={() => setSelectedTab(tab?.object)}
           >
             {tab?.name}
           </li>

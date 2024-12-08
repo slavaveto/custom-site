@@ -1,3 +1,5 @@
+//to run: npm run clear-documents
+
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
