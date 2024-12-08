@@ -5,7 +5,7 @@ import { AppContext } from "@/context/app-context-provider";
 import { TabNav } from "../../components/tab-nav";
 
 //import { MessageForm } from "../page-3/_components/message-form";
-import { MessageForm } from "@/app/components/scn-message-form";
+import { MessageForm } from "@/app/components/mui-message-form";
 
 export default function Page2() {
   const { pagesData } = useContext(AppContext);

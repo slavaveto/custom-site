@@ -1,5 +1,6 @@
 "use client";
 import { useState, useContext } from "react";
+import Link from "next/link";
 
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoCloseCircleOutline } from "react-icons/io5";
@@ -36,12 +37,16 @@ export const Header = () => {
         </div>
 
         <div className="ml-auto">
-          <h1 className="md:text-2xl font-bold text-black dark:text-white">
-            {siteData?.title}
-          </h1>
-          <h2 className="italic text-gray-600 dark:text-gray-300">
-            {siteData?.subtitle}
-          </h2>
+          <Link href="/">
+            <h1 className="md:text-2xl font-bold text-black dark:text-white">
+              {siteData?.title}
+            </h1>
+          </Link>
+          <Link href="/">
+            <h2 className="italic text-gray-600 dark:text-gray-300">
+              {siteData?.subtitle}
+            </h2>
+          </Link>
         </div>
       </div>
     </header>

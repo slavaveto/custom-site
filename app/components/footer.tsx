@@ -3,10 +3,12 @@ import { VscColorMode } from "react-icons/vsc";
 import { FaAngleDown } from "react-icons/fa6";
 
 import { AppContext } from "@/context/app-context-provider";
+import useDetectColorMode from "../hooks/detect-color";
 
 export const Footer = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const { setLanguage } = useContext(AppContext);
+  const colorMode = useDetectColorMode();
 
   useEffect(() => {
     // Check localStorage for theme preference
