@@ -70,6 +70,10 @@ export const MessageForm = () => {
     }
   };
 
+  const isFormValid = Object.values(formData).every(
+    (value) => value.trim() !== ""
+  );
+
   return (
     <div>
       {messageSent && (
@@ -172,8 +176,9 @@ export const MessageForm = () => {
                 sx={{
                   textTransform: "none", // Prevent uppercase text
                 }}
+                disabled={!isFormValid || isLoading} // Disable if form is invalid or loading
               >
-                Send
+                {isLoading ? "Sending..." : "Send"}
               </Button>
             </Box>
             {isLoading && <LoadingSpinner />}

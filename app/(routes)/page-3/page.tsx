@@ -2,7 +2,8 @@
 import { useContext } from "react";
 import { AppContext } from "@/context/app-context-provider";
 
-import { MessageForm } from "./_components/message-form";
+//import { MessageForm } from "./_components/message-form";
+import { MessageForm } from "@/app/components/mui-message-form";
 
 export default function Page3() {
   const { pagesData } = useContext(AppContext);
@@ -15,6 +16,7 @@ export default function Page3() {
       <h1 className="text-lg font-bold">{page3Data?.name}</h1>
       <div className="mt-2 text-sm text-gray-500">{page3Data?.pageContent}</div>
       <div className="max-w-[366px]">
+        {/* <MessageForm /> */}
         <MessageForm />
       </div>
     </div>
