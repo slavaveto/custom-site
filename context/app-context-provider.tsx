@@ -67,10 +67,13 @@ export const AppContextProvider = ({
   const [error, setError] = useState<string | null>(null);
 
   const getUserLanguage = () => {
-    const userLanguageAndCountry =
-      navigator.language || navigator.languages[0] || "en-US";
-    const userLanguage = userLanguageAndCountry.split("-")[0];
-    return userLanguage;
+    if (typeof window !== "undefined" && typeof navigator !== "undefined") {
+      const userLanguageAndCountry =
+        navigator.language || navigator.languages[0] || "en-US";
+      const userLanguage = userLanguageAndCountry.split("-")[0];
+      return userLanguage;
+    }
+    return "en-US";
   };
 
   const [language, setLanguage] = useState<string>(getUserLanguage());
