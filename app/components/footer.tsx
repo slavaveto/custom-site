@@ -9,6 +9,7 @@ export const Footer = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isThemeModalOpen, setIsThemeModalOpen] = useState(false);
   const { setLanguage } = useContext(AppContext);
+  //let colorMode: string = "";
   const colorMode = useDetectColorMode();
 
   useEffect(() => {
@@ -74,9 +75,13 @@ export const Footer = () => {
             <VscColorMode className="text-xl rotate-45 dark:text-yellow-500" />
             <FaAngleDown className="text-sm dark:text-gray-400" />
 
-            {/* Theme selection box */}
-            {isThemeModalOpen && (
-              <div className="absolute -translate-y-[80%] -translate-x-28 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 p-2 rounded-lg shadow-lg mt-2 w-[150px]">
+           
+          </div>
+
+
+           {/* Theme selection box */}
+           {isThemeModalOpen && (
+              <div className="absolute -translate-y-[110%] -translate-x-16 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 p-2 rounded-lg shadow-lg mt-2 w-[150px]">
                 <div
                   onClick={() => {
                     setIsDarkMode(false);
@@ -101,13 +106,8 @@ export const Footer = () => {
                 </div>
                 <div
                   onClick={() => {
-                    const newMode = colorMode === "dark" ? "light" : "dark";
-                    setIsDarkMode(newMode === "dark");
-                    document.documentElement.classList.toggle(
-                      "dark",
-                      newMode === "dark"
-                    );
-                    localStorage.setItem("theme", newMode);
+                    localStorage.removeItem("theme");
+                    document.documentElement.classList.remove("dark")
                     setIsThemeModalOpen(false);
                   }}
                   className="cursor-pointer px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
@@ -116,7 +116,6 @@ export const Footer = () => {
                 </div>
               </div>
             )}
-          </div>
         </div>
       </div>
     </footer>
