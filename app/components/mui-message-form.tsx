@@ -25,6 +25,9 @@ export const MessageForm = () => {
     telegram: "",
     message: "",
   });
+  const [formErrors, setFormErrors] = useState({
+    email: "",
+  });
 
   const handleChange = (
     e:
@@ -34,6 +37,15 @@ export const MessageForm = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     console.log(formData);
+
+    // Validate email format
+    if (name === "email") {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email regex
+      setFormErrors((prev) => ({
+        ...prev,
+        email: emailRegex.test(value) ? "" : "Invalid email format",
+      }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -70,9 +82,9 @@ export const MessageForm = () => {
     }
   };
 
-  const isFormValid = Object.values(formData).every(
-    (value) => value.trim() !== ""
-  );
+  const isFormValid =
+    Object.values(formData).every((value) => value.trim() !== "") &&
+    !formErrors.email;
 
   return (
     <div>
@@ -117,6 +129,8 @@ export const MessageForm = () => {
                 onChange={handleChange}
                 required
                 fullWidth
+                error={formErrors.email !== ""}
+                helperText={formErrors.email}
               />
             </Box>
 
