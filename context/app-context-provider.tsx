@@ -34,6 +34,8 @@ type AppContextType = {
   error: string | null;
   language: string;
   setLanguage: (language: string) => void;
+  isDarkMode: boolean;
+  setIsDarkMode: (value: boolean | ((prevMode: boolean) => boolean)) => void; // Accept a function or boolean
 };
 
 export const AppContext = createContext<AppContextType>({
@@ -43,6 +45,8 @@ export const AppContext = createContext<AppContextType>({
   error: null,
   language: "en",
   setLanguage: () => {},
+  isDarkMode: false,
+  setIsDarkMode: () => {},
 });
 
 i18n
@@ -65,6 +69,7 @@ export const AppContextProvider = ({
   const [siteData, setSiteData] = useState<Site | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   const getUserLanguage = () => {
     if (typeof window !== "undefined" && typeof navigator !== "undefined") {
@@ -108,7 +113,16 @@ export const AppContextProvider = ({
 
   return (
     <AppContext.Provider
-      value={{ pagesData, siteData, loading, error, language, setLanguage }}
+      value={{
+        pagesData,
+        siteData,
+        loading,
+        error,
+        language,
+        setLanguage,
+        isDarkMode,
+        setIsDarkMode,
+      }}
     >
       {children}
     </AppContext.Provider>

@@ -6,9 +6,8 @@ import { AppContext } from "@/context/app-context-provider";
 import useDetectColorMode from "../hooks/detect-color";
 
 export const Footer = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isThemeModalOpen, setIsThemeModalOpen] = useState(false);
-  const { setLanguage } = useContext(AppContext);
+  const { setLanguage, setIsDarkMode } = useContext(AppContext);
   //let colorMode: string = "";
   const colorMode = useDetectColorMode();
 
@@ -74,48 +73,45 @@ export const Footer = () => {
           >
             <VscColorMode className="text-xl rotate-45 dark:text-yellow-500" />
             <FaAngleDown className="text-sm dark:text-gray-400" />
-
-           
           </div>
 
-
-           {/* Theme selection box */}
-           {isThemeModalOpen && (
-              <div className="absolute -translate-y-[110%] -translate-x-16 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 p-2 rounded-lg shadow-lg mt-2 w-[150px]">
-                <div
-                  onClick={() => {
-                    setIsDarkMode(false);
-                    document.documentElement.classList.remove("dark");
-                    localStorage.setItem("theme", "light");
-                    setIsThemeModalOpen(false);
-                  }}
-                  className="cursor-pointer px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
-                >
-                  Light Mode
-                </div>
-                <div
-                  onClick={() => {
-                    setIsDarkMode(true);
-                    document.documentElement.classList.add("dark");
-                    localStorage.setItem("theme", "dark");
-                    setIsThemeModalOpen(false);
-                  }}
-                  className="cursor-pointer px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
-                >
-                  Dark Mode
-                </div>
-                <div
-                  onClick={() => {
-                    localStorage.removeItem("theme");
-                    document.documentElement.classList.remove("dark")
-                    setIsThemeModalOpen(false);
-                  }}
-                  className="cursor-pointer px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
-                >
-                  System (auto)
-                </div>
+          {/* Theme selection box */}
+          {isThemeModalOpen && (
+            <div className="absolute -translate-y-[110%] -translate-x-16 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 p-2 rounded-lg shadow-lg mt-2 w-[150px]">
+              <div
+                onClick={() => {
+                  setIsDarkMode(false);
+                  document.documentElement.classList.remove("dark");
+                  localStorage.setItem("theme", "light");
+                  setIsThemeModalOpen(false);
+                }}
+                className="cursor-pointer px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
+              >
+                Light Mode
               </div>
-            )}
+              <div
+                onClick={() => {
+                  setIsDarkMode(true);
+                  document.documentElement.classList.add("dark");
+                  localStorage.setItem("theme", "dark");
+                  setIsThemeModalOpen(false);
+                }}
+                className="cursor-pointer px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
+              >
+                Dark Mode
+              </div>
+              <div
+                onClick={() => {
+                  localStorage.removeItem("theme");
+                  document.documentElement.classList.remove("dark");
+                  setIsThemeModalOpen(false);
+                }}
+                className="cursor-pointer px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
+              >
+                System (auto)
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </footer>

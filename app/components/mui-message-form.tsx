@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import emailjs from "@emailjs/browser";
 
+import { AppContext } from "@/context/app-context-provider";
 import { LoadingSpinner } from "@/app/components/loading-spinner";
 import {
   TextField,
@@ -12,10 +13,11 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  SelectChangeEvent,
 } from "@mui/material";
-import { SelectChangeEvent } from "@mui/material/Select";
 
 export const MessageForm = () => {
+  const { isDarkMode } = useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
   const [messageSent, setMessageSent] = useState(false);
   const [formData, setFormData] = useState({
@@ -86,6 +88,15 @@ export const MessageForm = () => {
     Object.values(formData).every((value) => value.trim() !== "") &&
     !formErrors.email;
 
+  const commonSlotProps = {
+    input: {
+      style: { color: isDarkMode ? "white" : "black" },
+    },
+    inputLabel: {
+      style: { color: isDarkMode ? "silver" : "black" },
+    },
+  };
+
   return (
     <div>
       {messageSent && (
@@ -116,6 +127,7 @@ export const MessageForm = () => {
                 onChange={handleChange}
                 required
                 fullWidth
+                //slotProps={commonSlotProps}
               />
             </Box>
 
@@ -131,12 +143,16 @@ export const MessageForm = () => {
                 fullWidth
                 error={formErrors.email !== ""}
                 helperText={formErrors.email}
+                //slotProps={commonSlotProps}
               />
             </Box>
 
             <Box sx={{ minWidth: 120 }}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">
+                <InputLabel
+                  id="demo-simple-select-label"
+                  //style={{ color: isDarkMode ? "white" : "black" }}
+                >
                   Some select
                 </InputLabel>
                 <Select
@@ -146,6 +162,7 @@ export const MessageForm = () => {
                   label="Some Select"
                   name="someSelect"
                   onChange={handleChange}
+                  //style={{ color: isDarkMode ? "white" : "black" }}
                 >
                   <MenuItem value={"Select1"}>Select1</MenuItem>
                   <MenuItem value={"Select2"}>Select2</MenuItem>
@@ -164,6 +181,7 @@ export const MessageForm = () => {
                 onChange={handleChange}
                 required
                 fullWidth
+                //slotProps={commonSlotProps}
               />
             </Box>
 
@@ -179,6 +197,7 @@ export const MessageForm = () => {
                 fullWidth
                 multiline
                 rows={4}
+                //slotProps={commonSlotProps}
               />
             </Box>
 
@@ -186,7 +205,7 @@ export const MessageForm = () => {
               <Button
                 type="submit"
                 variant="outlined"
-                className="w-[170px]"
+                className="w-[170px] dark:text-white"
                 sx={{
                   textTransform: "none", // Prevent uppercase text
                 }}
