@@ -4,7 +4,16 @@ import { toast } from "react-hot-toast";
 import emailjs from "@emailjs/browser";
 
 import { LoadingSpinner } from "@/app/components/loading-spinner";
-import { TextField, Button, Box } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Box,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
+import { SelectChangeEvent } from "@mui/material/Select";
 
 export const MessageForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -12,12 +21,15 @@ export const MessageForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    someSelect: "",
     telegram: "",
     message: "",
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e:
+      | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+      | SelectChangeEvent
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -76,7 +88,7 @@ export const MessageForm = () => {
 
           <form
             onSubmit={handleSubmit}
-            className="mt-4 flex flex-col space-y-4"
+            className="mt-4 flex flex-col space-y-4 dark:text-white"
           >
             <Box>
               <TextField
@@ -102,6 +114,26 @@ export const MessageForm = () => {
                 required
                 fullWidth
               />
+            </Box>
+
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">
+                  Some select
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={formData.someSelect}
+                  label="Some Select"
+                  name="someSelect"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={"Select1"}>Select1</MenuItem>
+                  <MenuItem value={"Select2"}>Select2</MenuItem>
+                  <MenuItem value={"Select3"}>Select3</MenuItem>
+                </Select>
+              </FormControl>
             </Box>
 
             <Box>
