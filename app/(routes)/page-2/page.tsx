@@ -6,6 +6,8 @@ import { TabNav } from "../../components/tab-nav";
 
 //import { MessageForm } from "../page-3/_components/message-form";
 import { MessageForm } from "@/app/components/mui-message-form";
+import { motion } from "framer-motion";
+ 
 
 export default function Page2() {
   const { pagesData } = useContext(AppContext);
@@ -14,8 +16,37 @@ export default function Page2() {
     page2Data?.pageTabs?.[0]?.object || ""
   );
 
+  const pageVariants = {
+    initial: {
+      opacity: 0,
+      y: 50,
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut", 
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -50, 
+      transition: {
+        duration: 0.3,
+        ease: "easeIn",
+      },
+    },
+  };
+
   return (
-    <div className="flex flex-col">
+    <motion.div
+    className="flex flex-col"
+    variants={pageVariants}
+    initial="initial"
+    animate="animate"
+    exit="exit"
+  >
       <h1 className="text-lg font-bold mb-4">{page2Data?.name}</h1>
 
       <TabNav selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
@@ -33,6 +64,6 @@ export default function Page2() {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }
