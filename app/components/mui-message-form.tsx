@@ -16,7 +16,7 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 
-export const MessageForm = ({page}: {page: string}) => {
+export const MessageForm = ({ page }: { page: string }) => {
   const { isDarkMode } = useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
   const [messageSent, setMessageSent] = useState(false);
@@ -66,7 +66,7 @@ export const MessageForm = ({page}: {page: string}) => {
           someSelect: formData.someSelect,
           telegram: formData.telegram,
           message: formData.message,
-          page: formData.page
+          page: formData.page,
         },
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
       );
@@ -105,7 +105,7 @@ export const MessageForm = ({page}: {page: string}) => {
       {messageSent && (
         <div className="mt-16 bg-gray-200 pt-4 pb-6 px-2 border-l-4 border-green-400 text-sm text-gray-700">
           Horray! <br />
-          Your message has been successfully sent!
+          Your message has been successfully sent!!
         </div>
       )}
 
