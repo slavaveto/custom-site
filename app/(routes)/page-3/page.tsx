@@ -17,7 +17,7 @@ export default function Page3() {
       <div className="mt-2 text-sm text-gray-500">{page3Data?.pageContent}</div>
       <div className="max-w-[366px]">
         {/* <MessageForm /> */}
-        <MessageForm />
+        <MessageForm page="page-3" />
       </div>
     </div>
   );

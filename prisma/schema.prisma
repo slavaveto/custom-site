@@ -48,8 +48,10 @@ model Message {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   name     String
   email    String
+  someSelect String
   telegram String
   message  String
+  page     String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

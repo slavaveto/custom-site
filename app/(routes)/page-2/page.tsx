@@ -29,7 +29,7 @@ export default function Page2() {
         </div>
         {selectedTab === "tab-2" && (
           <div className="max-w-[366px]">
-            <MessageForm />
+            <MessageForm page="page-2" />
           </div>
         )}
       </div>

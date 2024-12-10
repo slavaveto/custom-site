@@ -16,7 +16,7 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 
-export const MessageForm = () => {
+export const MessageForm = ({page}: {page: string}) => {
   const { isDarkMode } = useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
   const [messageSent, setMessageSent] = useState(false);
@@ -26,6 +26,7 @@ export const MessageForm = () => {
     someSelect: "",
     telegram: "",
     message: "",
+    page: page,
   });
   const [formErrors, setFormErrors] = useState({
     email: "",
@@ -62,8 +63,10 @@ export const MessageForm = () => {
         {
           name: formData.name,
           email: formData.email,
+          someSelect: formData.someSelect,
           telegram: formData.telegram,
           message: formData.message,
+          page: formData.page
         },
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
       );
