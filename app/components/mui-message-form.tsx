@@ -202,7 +202,7 @@ export const MessageForm = () => {
             </Box>
 
             <Box display="flex" justifyContent="flex-end">
-              <Button
+              {/* <Button
                 type="submit"
                 variant="outlined"
                 className="w-[170px] dark:text-white"
@@ -212,7 +212,15 @@ export const MessageForm = () => {
                 disabled={!isFormValid || isLoading} // Disable if form is invalid or loading
               >
                 {isLoading ? "Sending..." : "Send"}
-              </Button>
+              </Button> */}
+
+              <button
+                type="submit"
+                className="btn btn-wide btn-outline btn-sm max-w-[170px] border-gray-300 text-gray-400 self-end"
+                disabled={!isFormValid || isLoading}
+              >
+                {isLoading ? "Sending..." : "Send"}
+              </button>
             </Box>
             {isLoading && <LoadingSpinner />}
           </form>
