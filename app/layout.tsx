@@ -9,7 +9,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="">
       <body className="bg-white dark:bg-gray-800 text-black dark:text-white">
         <AppContextProvider>{children}</AppContextProvider>
         <ToasterProvider />
