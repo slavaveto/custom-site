@@ -77,40 +77,47 @@ export const Footer = () => {
 
           {/* Theme selection box */}
           {isThemeModalOpen && (
-            <div className="absolute -translate-y-[110%] -translate-x-16 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 p-2 rounded-lg shadow-lg mt-2 w-[150px]">
-              <div
-                onClick={() => {
-                  setIsDarkMode(false);
-                  document.documentElement.classList.remove("dark");
-                  localStorage.setItem("theme", "light");
-                  setIsThemeModalOpen(false);
-                }}
-                className="cursor-pointer px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
-              >
-                Light Mode
+            <>
+              <div className="absolute z-50 -translate-y-[110%] -translate-x-16 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 p-2 rounded-lg shadow-lg mt-2 w-[150px]">
+                <div
+                  onClick={() => {
+                    setIsDarkMode(false);
+                    document.documentElement.classList.remove("dark");
+                    localStorage.setItem("theme", "light");
+                    setIsThemeModalOpen(false);
+                  }}
+                  className="cursor-pointer px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
+                >
+                  Light Mode
+                </div>
+                <div
+                  onClick={() => {
+                    setIsDarkMode(true);
+                    document.documentElement.classList.add("dark");
+                    localStorage.setItem("theme", "dark");
+                    setIsThemeModalOpen(false);
+                  }}
+                  className="cursor-pointer px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
+                >
+                  Dark Mode
+                </div>
+                <div
+                  onClick={() => {
+                    localStorage.removeItem("theme");
+                    document.documentElement.classList.remove("dark");
+                    setIsThemeModalOpen(false);
+                  }}
+                  className="cursor-pointer px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
+                >
+                  System (auto)
+                </div>
               </div>
+              {/* Screen blocker */}
               <div
-                onClick={() => {
-                  setIsDarkMode(true);
-                  document.documentElement.classList.add("dark");
-                  localStorage.setItem("theme", "dark");
-                  setIsThemeModalOpen(false);
-                }}
-                className="cursor-pointer px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
-              >
-                Dark Mode
-              </div>
-              <div
-                onClick={() => {
-                  localStorage.removeItem("theme");
-                  document.documentElement.classList.remove("dark");
-                  setIsThemeModalOpen(false);
-                }}
-                className="cursor-pointer px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
-              >
-                System (auto)
-              </div>
-            </div>
+                className="fixed top-0 bottom-0 left-0 right-0 bg-black opacity-10"
+                onClick={() => setIsThemeModalOpen(false)}
+              />
+            </>
           )}
         </div>
       </div>
