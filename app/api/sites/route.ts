@@ -7,6 +7,10 @@ export async function GET(request: Request) {
   let siteInformation;
 
   try {
+    let availableLanguages = await db.site.findMany({}).then((data) => {
+      return data.map((site) => site.language);
+    });
+
     siteInformation = await db.site.findFirst({
       where: {
         language: userLanguage ?? "en",
@@ -23,10 +27,16 @@ export async function GET(request: Request) {
           language: "en",
         },
       });
-      return NextResponse.json(siteInformation, { status: 200 });
+      return NextResponse.json(
+        { siteInformation, availableLanguages },
+        { status: 200 }
+      );
     }
 
-    return NextResponse.json(siteInformation, { status: 200 });
+    return NextResponse.json(
+      { siteInformation, availableLanguages },
+      { status: 200 }
+    );
   } catch (error) {
     console.log(error);
     return new NextResponse("GET SITES ERROR", { status: 500 });
