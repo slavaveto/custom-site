@@ -37,6 +37,8 @@ type AppContextType = {
   isDarkMode: boolean;
   setIsDarkMode: (value: boolean | ((prevMode: boolean) => boolean)) => void; // Accept a function or boolean
   allAvailableLanguages: string[];
+  mobileNavOpen: boolean;
+  setMobileNavOpen: (open: boolean) => void;
 };
 
 export const AppContext = createContext<AppContextType>({
@@ -49,6 +51,8 @@ export const AppContext = createContext<AppContextType>({
   isDarkMode: false,
   setIsDarkMode: () => {},
   allAvailableLanguages: [],
+  mobileNavOpen: false,
+  setMobileNavOpen: () => {},
 });
 
 // i18n
@@ -75,6 +79,7 @@ export const AppContextProvider = ({
   const [allAvailableLanguages, setAllAvailableLanguages] = useState<string[]>(
     []
   );
+  const [mobileNavOpen, setMobileNavOpen] = useState<boolean>(false);
 
   const getUserLanguage = () => {
     if (typeof window !== "undefined" && typeof navigator !== "undefined") {
@@ -133,6 +138,8 @@ export const AppContextProvider = ({
         isDarkMode,
         setIsDarkMode,
         allAvailableLanguages,
+        mobileNavOpen,
+        setMobileNavOpen,
       }}
     >
       {children}
