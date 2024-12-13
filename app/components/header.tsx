@@ -2,7 +2,7 @@
 import { useContext } from "react";
 import Link from "next/link";
 
-import Hamburger from "hamburger-react";
+import { Twirl as Hamburger } from "hamburger-react";
 
 import { AppContext } from "@/context/app-context-provider";
 
@@ -16,6 +16,8 @@ export const Header = () => {
         <Hamburger
           toggled={mobileNavOpen}
           toggle={() => setMobileNavOpen(!mobileNavOpen)}
+          direction="left"
+          duration={0.5}
         />
 
         <div className="ml-auto">
