@@ -38,6 +38,11 @@ export default function DashBoardLayout({
             ? "filter brightness-75 transition-all duration-300"
             : "filter brightness-100 transition-all duration-300"
         }`}
+        onClick={() => {
+          if (mobileNavOpen) {
+            setMobileNavOpen(false);
+          }
+        }}
       >
         <Header />
 
