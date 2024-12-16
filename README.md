@@ -1,5 +1,10 @@
 # Set up:
 
+# Clone repository from github
+    # type in terminal: git clone https://github.com/AJormand/custom-site.git
+
+# Create
+
 # 1. Register at https://www.mongodb.com/ to create database
 
     # Store your key in the environment variable DATABASE_URL
