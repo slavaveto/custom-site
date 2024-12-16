@@ -17,12 +17,12 @@ export default function Page1() {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: "easeOut", 
+        ease: "easeOut",
       },
     },
     exit: {
       opacity: 0,
-      y: -50, 
+      y: -50,
       transition: {
         duration: 0.3,
         ease: "easeIn",

@@ -9,8 +9,10 @@ export async function POST(request: Request) {
       data: {
         name: receivedMessage.name,
         email: receivedMessage.email,
+        someSelect: receivedMessage.someSelect,
         telegram: receivedMessage.telegram,
         message: receivedMessage.message,
+        page: receivedMessage.page,
       },
     });
 

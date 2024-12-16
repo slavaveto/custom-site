@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, use } from "react";
 import { fetchPages } from "@/app/services/api-client/api-client";
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
@@ -36,6 +36,9 @@ type AppContextType = {
   setLanguage: (language: string) => void;
   isDarkMode: boolean;
   setIsDarkMode: (value: boolean | ((prevMode: boolean) => boolean)) => void; // Accept a function or boolean
+  allAvailableLanguages: string[];
+  mobileNavOpen: boolean;
+  setMobileNavOpen: (open: boolean) => void;
 };
 
 export const AppContext = createContext<AppContextType>({
@@ -43,22 +46,25 @@ export const AppContext = createContext<AppContextType>({
   siteData: null,
   loading: true,
   error: null,
-  language: "en",
+  language: "",
   setLanguage: () => {},
   isDarkMode: false,
   setIsDarkMode: () => {},
+  allAvailableLanguages: [],
+  mobileNavOpen: false,
+  setMobileNavOpen: () => {},
 });
 
-i18n
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    fallbackLng: "en", // Fallback language if detection fails
-    detection: {
-      order: ["querystring", "cookie", "localStorage", "navigator"], // Order of detection sources
-      caches: ["cookie"], // Cache the detected language in a cookie
-    },
-  });
+// i18n
+//   .use(LanguageDetector)
+//   .use(initReactI18next)
+//   .init({
+//     fallbackLng: "en", // Fallback language if detection fails
+//     detection: {
+//       order: ["querystring", "cookie", "localStorage", "navigator"], // Order of detection sources
+//       caches: ["cookie"], // Cache the detected language in a cookie
+//     },
+//   });
 
 export const AppContextProvider = ({
   children,
@@ -70,6 +76,10 @@ export const AppContextProvider = ({
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const [allAvailableLanguages, setAllAvailableLanguages] = useState<string[]>(
+    []
+  );
+  const [mobileNavOpen, setMobileNavOpen] = useState<boolean>(false);
 
   const getUserLanguage = () => {
     if (typeof window !== "undefined" && typeof navigator !== "undefined") {
@@ -78,10 +88,10 @@ export const AppContextProvider = ({
       const userLanguage = userLanguageAndCountry.split("-")[0];
       return userLanguage;
     }
-    return "en-US";
+    return "en";
   };
 
-  const [language, setLanguage] = useState<string>(getUserLanguage());
+  const [language, setLanguage] = useState<string>("");
 
   const loadPages = async () => {
     try {
@@ -97,13 +107,18 @@ export const AppContextProvider = ({
   const loadSiteInformation = async () => {
     try {
       const response = await fetchSiteInformation(language);
-      setSiteData(response);
+      setSiteData(response.siteInformation);
+      setAllAvailableLanguages(response.availableLanguages);
     } catch (err) {
       console.log(err);
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    setLanguage(getUserLanguage());
+  }, []);
 
   useEffect(() => {
     console.log(`Language: ${language}`);
@@ -122,6 +137,9 @@ export const AppContextProvider = ({
         setLanguage,
         isDarkMode,
         setIsDarkMode,
+        allAvailableLanguages,
+        mobileNavOpen,
+        setMobileNavOpen,
       }}
     >
       {children}
